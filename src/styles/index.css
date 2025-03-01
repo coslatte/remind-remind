@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
 .btn-rounded-purple {
-  @apply
-  rounded-full bg-purple-100 active:bg-purple-400 p-2
+  @apply bg-purple-100 rounded-full active:bg-purple-400 p-2 shadow-md shadow-gray-500;
 }
 
-.pill {
-  @apply
-  bg-purple-200 border border-purple-100 rounded-2xl flex space-x-4 p-4;
+.task-pill {
+  @apply inline-block max-w-fit bg-purple-200 border-2 border-purple-100 rounded-2xl space-x-2 p-1 shadow-md shadow-gray-500;
 }
 
+.centered-boxes {
+  @apply flex justify-center items-center p-1;
+}
 
 /*
 :root {
