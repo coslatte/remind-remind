@@ -1,10 +1,10 @@
-import TaskList from "./TaskList"
 import "./styles/index.css";
+import TaskManager from "./TaskManager";
 
 const App: React.FC = () => {
   return (
     <>
-      <TaskList/>
+      <TaskManager />
     </>
   );
 };
