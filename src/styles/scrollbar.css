@@ -1,0 +1,16 @@
+/* styles/scrollbar.css */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px; /* Aumentar el ancho del scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color de fondo del track */
+  border-radius: 8px; /* Bordes redondeados */
+  margin: 4px; /* Simular padding */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888; /* Color del thumb */
+  border-radius: 8px; /* Bordes redondeados */
+  border: 2px solid #f1f1f1; /* Simular padding */
+}

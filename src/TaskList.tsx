@@ -8,7 +8,7 @@ export interface TaskListProp {
 
 const TaskList: React.FC<TaskListProp> = ({ taskList, deleteTask }) => {
   return (
-    <div className="flex flex-col items-center border-2 gap-1 w-full border-pink-600 bg-pink-200">
+    <div className="flex flex-col items-center gap-1">
       {taskList.map((task) => (
         <Task key={task.id} {...task} deleteTask={deleteTask} />
       ))}

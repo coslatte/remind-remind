@@ -17,43 +17,49 @@ const Task: React.FC<TaskProp> = ({ id, title, completed, deleteTask }) => {
   };
 
   return (
-    <div className="task-pill">
-      <div className="flex space-x-2 w-full">
+    <div className="task-pill borderlands">
+      <div className="flex w-full space-x-2">
         {/* COMPLETE-TASK */}
-        <div className="flex-none">
+        <div className="flex shrink-0">
           <button
             id="btn-add-task"
-            className="btn-rounded-purple"
+            className="btn-rounded-purple borderlands flex items-center justify-center"
             onClick={() => setIsCompleted(!isCompleted)}
           >
-            <FaCheckCircle />
+            <FaCheckCircle className="text-sm" />
           </button>
         </div>
+
         {/* INPUT-TEXT */}
-        <div className="flex grow justify-center">
+        <div className="flex grow">
           <input
             type="text"
-            id="task-input-text"
+            id="task-input"
             value={taskTitle}
             onChange={handleTaskInputText}
-            className="flex grow rounded-sm border-2 border-rose-300"
-            placeholder="Tarea aquí..."
+            className="borderlands font-t1 grow justify-center rounded-full border-2 bg-rose-50 pl-4 text-gray-950 placeholder:pl-2"
+            // placeholder="Tarea aquí..."
           />
         </div>
+
         {/* EDIT-TASK */}
-        <div className="flex-none">
-          <button id="btn-edit-task" className="btn-rounded-purple">
-            <FaEdit />
+        <div className="flex shrink-0">
+          <button
+            id="btn-edit-task"
+            className="borderlands btn-rounded-purple items-center justify-center"
+          >
+            <FaEdit className="text-sm" />
           </button>
         </div>
+
         {/* DELETE-TASK */}
-        <div className="flex-none">
+        <div className="flex shrink-0">
           <button
             id="btn-delete-task"
-            className="btn-rounded-purple"
+            className="borderlands btn-rounded-purple flex items-center justify-center"
             onClick={() => deleteTask(id)}
           >
-            <FaTrash />
+            <FaTrash className="text-sm" />
           </button>
         </div>
       </div>

@@ -24,11 +24,18 @@ const TaskManager: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col border-2 border-pink-100 bg-purple-300">
-      <button className="btn-rounded-purple" onClick={handleAddTask}>
-        Add Task
-      </button>
-      <TaskList taskList={taskList} deleteTask={deleteTask} />
+    <div className="m-2">
+      <div className="m-2">
+        <button
+          className="borderlands flat-shadow btn-rounded-purple font-t1 w-full"
+          onClick={handleAddTask}
+        >
+          Add Task
+        </button>
+      </div>
+      <div className="borderlands flat-shadow scrollbar-thin scrollbar-thumb-rose-500 scrollbar-track-gray-200 m-2 h-64 overflow-y-scroll rounded-3xl bg-rose-400 p-2">
+        <TaskList taskList={taskList} deleteTask={deleteTask} />
+      </div>
     </div>
   );
 };
