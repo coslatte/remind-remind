@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Pill from "./Pill";
 import { FaCheckCircle, FaEdit, FaTrash } from "react-icons/fa";
 
 export interface TaskProp {
@@ -18,7 +17,7 @@ const Task: React.FC<TaskProp> = ({ id, title, completed, deleteTask }) => {
   };
 
   return (
-    <Pill>
+    <div className="task-pill">
       <div className="flex space-x-2 w-full">
         {/* COMPLETE-TASK */}
         <div className="flex-none">
@@ -58,7 +57,7 @@ const Task: React.FC<TaskProp> = ({ id, title, completed, deleteTask }) => {
           </button>
         </div>
       </div>
-    </Pill>
+    </div>
   );
 };
 
