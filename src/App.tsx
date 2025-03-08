@@ -1,5 +1,4 @@
 import "./styles/custom-tailwind.css";
-import "./styles/scrollbar.css";
 import TaskManager from "./TaskManager";
 import TimePanel from "./TimePanel";
 
