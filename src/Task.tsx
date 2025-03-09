@@ -17,13 +17,13 @@ const Task: React.FC<TaskProp> = ({ id, title, completed, deleteTask }) => {
   };
 
   return (
-    <div className="task-pill borderlands">
+    <div className="task-pill borderlands flex w-full">
       <div className="flex w-full space-x-2">
         {/* COMPLETE-TASK */}
         <div className="flex shrink-0">
           <button
             id="btn-add-task"
-            className="btn-rounded-purple borderlands flex items-center justify-center"
+            className="btn-rounded-rose borderlands flex items-center justify-center"
             onClick={() => setIsCompleted(!isCompleted)}
           >
             <FaCheckCircle className="text-sm" />
@@ -37,8 +37,8 @@ const Task: React.FC<TaskProp> = ({ id, title, completed, deleteTask }) => {
             id="task-input"
             value={taskTitle}
             onChange={handleTaskInputText}
-            className="borderlands font-t1 grow justify-center rounded-full border-2 bg-rose-50 pl-4 text-gray-950 placeholder:pl-2"
-            // placeholder="Tarea aquí..."
+            className="borderlands font-t1 w-min-[8px] w-full grow rounded-full border-2 bg-rose-50 pl-4 text-gray-950 placeholder:pl-2"
+            placeholder="Task"
           />
         </div>
 
@@ -46,7 +46,7 @@ const Task: React.FC<TaskProp> = ({ id, title, completed, deleteTask }) => {
         <div className="flex shrink-0">
           <button
             id="btn-edit-task"
-            className="borderlands btn-rounded-purple items-center justify-center"
+            className="borderlands btn-rounded-rose items-center justify-center"
           >
             <FaEdit className="text-sm" />
           </button>
@@ -56,7 +56,7 @@ const Task: React.FC<TaskProp> = ({ id, title, completed, deleteTask }) => {
         <div className="flex shrink-0">
           <button
             id="btn-delete-task"
-            className="borderlands btn-rounded-purple flex items-center justify-center"
+            className="borderlands btn-rounded-rose flex items-center justify-center"
             onClick={() => deleteTask(id)}
           >
             <FaTrash className="text-sm" />

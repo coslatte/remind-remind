@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaGear } from "react-icons/fa6";
+import { IoLanguage } from "react-icons/io5";
 
 const dateInfo: Intl.DateTimeFormatOptions = {
   weekday: "long",
@@ -28,9 +29,28 @@ const handleDateLang = (timeLang: string): string => {
 };
 
 const TimePanel: React.FC = () => {
-  const [dateLang, setDateLang] = useState<string>("es");
+  const [dateLang, setDateLang] = useState<string>("en");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [currentTime, setCurrentTime] = useState<Date>(new Date());
 
+  // Time Logic
+  // ----------
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const getCurrentTime = () => {
+    return currentTime.toLocaleTimeString(dateLang, {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
+  // Modal Logic
+  // ----------
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -40,31 +60,46 @@ const TimePanel: React.FC = () => {
   };
 
   return (
-    <>
-      <div className="task-pill">
-        <div id="time">
-          <p className="font-t1">{handleDateLang(dateLang)}</p>
-        </div>
-        <div id="time-settings">
-          <button
-            onClick={openModal}
-            className="btn-rounded-purple bg-gray-800"
+    <div className="flex items-center space-x-2">
+      <div id="date-info" className="flex grow rounded-3xl bg-rose-200">
+        <p id="date" className="font-baloo flex grow p-2 pl-4 text-3xl">
+          {handleDateLang(dateLang)}
+        </p>
+        <p
+          id="time"
+          className="font-baloo flex items-center justify-center pr-4 text-2xl"
+        >
+          {getCurrentTime()}
+        </p>
+      </div>
+      <div id="date-settings" className="flex-none">
+        <button onClick={openModal} className="borderlands btn-rounded-rose">
+          <FaGear className="text-sm" />
+        </button>
+      </div>
+      <div className="relative">
+        {isModalOpen && (
+          <div
+            onClick={closeModal}
+            className="fixed inset-0 z-50 flex items-center justify-center"
           >
-            <FaGear className="text-sm" />
-          </button>
-        </div>
-        <div className="relative">
-          {isModalOpen && (
+            {/* Background del modal */}
+            <div className="fixed inset-0 bg-rose-950/30"></div>
+
+            {/* Modal */}
             <div
-              onClick={closeModal}
-              className="fixed inset-0 bg-gray-900 opacity-50"
+              className="borderlands relative z-50 w-60 space-y-4 rounded-3xl bg-rose-100 p-8"
+              onClick={(e) => e.stopPropagation()}
             >
-              <div
-                className="pill-task borderlands"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <span>Language</span>
+              <div className="flex items-center justify-evenly">
+                <span className="font-baloo text-2xl font-medium">
+                  Time Format
+                </span>
+                <IoLanguage />
+              </div>
+              <div className="flex flex-col space-y-2">
                 <button
+                  className="btn-rounded-rose borderlands font-baloo"
                   onClick={() => {
                     setDateLang("es");
                     closeModal();
@@ -73,6 +108,7 @@ const TimePanel: React.FC = () => {
                   Español
                 </button>
                 <button
+                  className="btn-rounded-rose borderlands font-baloo"
                   onClick={() => {
                     setDateLang("en");
                     closeModal();
@@ -82,10 +118,10 @@ const TimePanel: React.FC = () => {
                 </button>
               </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 

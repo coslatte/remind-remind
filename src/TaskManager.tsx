@@ -24,19 +24,19 @@ const TaskManager: React.FC = () => {
   }
 
   return (
-    <>
-      <div className="m-2">
+    <div className="space-y-4">
+      <div className="w-full">
         <button
-          className="borderlands flat-shadow btn-rounded-purple font-t1 w-full"
+          className="borderlands flat-shadow btn-rounded-rose font-baloo w-full"
           onClick={handleAddTask}
         >
           Add Task
         </button>
       </div>
-      <div className="borderlands flat-shadow scrollbar-thin scrollbar-thumb-rose-500 scrollbar-track-gray-200 m-2 h-64 overflow-y-scroll rounded-3xl bg-rose-400 p-2">
+      <div className="borderlands flat-shadow scrollbar-thin scrollbar-thumb-rose-500 scrollbar-track-gray-200 h-[calc(100vh-160px)] overflow-y-scroll rounded-3xl bg-rose-400 p-2">
         <TaskList taskList={taskList} deleteTask={deleteTask} />
       </div>
-    </>
+    </div>
   );
 };
 
