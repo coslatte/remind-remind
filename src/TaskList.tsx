@@ -1,7 +1,7 @@
 import React from "react";
 import Task, { TaskProp } from "./Task";
 
-export interface TaskListProp {
+interface TaskListProp {
   taskList: TaskProp[];
   deleteTask: (taskId: number) => void;
 }

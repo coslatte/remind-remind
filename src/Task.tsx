@@ -17,16 +17,20 @@ const Task: React.FC<TaskProp> = ({ id, title, completed, deleteTask }) => {
   };
 
   return (
-    <div className="task-pill borderlands flex w-full">
+    <div
+      className={`task-pill borderlands flex w-full ${isCompleted ? "opacity-50" : ""}`}
+    >
       <div className="flex w-full space-x-2">
         {/* COMPLETE-TASK */}
         <div className="flex shrink-0">
           <button
             id="btn-add-task"
-            className="btn-rounded-rose borderlands flex items-center justify-center"
+            className={`btn-rounded-rose borderlands flex items-center justify-center ${isCompleted ? "bg-green-300" : ""}`}
             onClick={() => setIsCompleted(!isCompleted)}
           >
-            <FaCheckCircle className="text-sm" />
+            <FaCheckCircle
+              className={`text-sm ${isCompleted ? "text-green-700" : ""}`}
+            />
           </button>
         </div>
 
@@ -37,7 +41,7 @@ const Task: React.FC<TaskProp> = ({ id, title, completed, deleteTask }) => {
             id="task-input"
             value={taskTitle}
             onChange={handleTaskInputText}
-            className="borderlands font-t1 w-min-[8px] w-full grow rounded-full border-2 bg-rose-50 pl-4 text-gray-950 placeholder:pl-2"
+            className={`borderlands font-t1 w-min-[8px] w-full grow rounded-full border-2 bg-rose-50 pl-4 text-gray-950 placeholder:pl-2 ${isCompleted ? "line-through" : ""}`}
             placeholder="Task"
           />
         </div>

@@ -20,16 +20,16 @@ const getCurrentDateES = (): string => {
 };
 
 const handleDateLang = (timeLang: string): string => {
-  if (timeLang === "es") {
+  if (timeLang === "es-ES") {
     return getCurrentDateES();
-  } else if (timeLang === "en") {
+  } else if (timeLang === "en-EN") {
     return getCurrentDateEN();
   }
   return "";
 };
 
 const TimePanel: React.FC = () => {
-  const [dateLang, setDateLang] = useState<string>("en");
+  const [dateLang, setDateLang] = useState<string>("en-EN");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
 
@@ -101,20 +101,20 @@ const TimePanel: React.FC = () => {
                 <button
                   className="btn-rounded-rose borderlands font-baloo"
                   onClick={() => {
-                    setDateLang("es");
-                    closeModal();
-                  }}
-                >
-                  Español
-                </button>
-                <button
-                  className="btn-rounded-rose borderlands font-baloo"
-                  onClick={() => {
-                    setDateLang("en");
+                    setDateLang("en-EN");
                     closeModal();
                   }}
                 >
                   English
+                </button>
+                <button
+                  className="btn-rounded-rose borderlands font-baloo"
+                  onClick={() => {
+                    setDateLang("es-ES");
+                    closeModal();
+                  }}
+                >
+                  Español
                 </button>
               </div>
             </div>
