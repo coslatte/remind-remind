@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { FaGear } from "react-icons/fa6";
 import { IoLanguage } from "react-icons/io5";
 
 const dateInfo: Intl.DateTimeFormatOptions = {
@@ -60,8 +59,12 @@ const TimePanel: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center space-x-2">
-      <div id="date-info" className="flex grow rounded-3xl bg-rose-200">
+    <div className="flex grow items-center space-x-2">
+      <div
+        id="date-info"
+        onClick={openModal}
+        className="flex grow cursor-help rounded-3xl bg-rose-200"
+      >
         <p id="date" className="font-baloo flex grow p-2 pl-4 text-3xl">
           {handleDateLang(dateLang)}
         </p>
@@ -72,11 +75,6 @@ const TimePanel: React.FC = () => {
           {getCurrentTime()}
         </p>
       </div>
-      <div id="date-settings" className="flex-none">
-        <button onClick={openModal} className="borderlands btn-rounded-rose">
-          <FaGear className="text-sm" />
-        </button>
-      </div>
       <div className="relative">
         {isModalOpen && (
           <div
@@ -84,7 +82,7 @@ const TimePanel: React.FC = () => {
             className="fixed inset-0 z-50 flex items-center justify-center"
           >
             {/* Background del modal */}
-            <div className="fixed inset-0 bg-rose-950/30"></div>
+            <div className="fixed inset-0 cursor-default bg-rose-950/30"></div>
 
             {/* Modal */}
             <div

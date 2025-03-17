@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "ReminderReminder",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "identifier": "com.reminder.app",
   "build": {
     "frontendDist": "../dist",
@@ -12,11 +12,19 @@
   "app": {
     "windows": [
       {
-        "title": "ReminderReminder",
-        "width": 800,
+        "title": "RemindRemind",
+        "width": 500,
         "height": 600,
-        "resizable": true,
-        "fullscreen": false
+        "transparent": true,
+        "decorations": false,
+        "skipTaskbar": false,
+        "shadow": false,
+        "acceptFirstMouse": true,
+        "visibleOnAllWorkspaces": true,
+        "resizable": false,
+        "fullscreen": false,
+        "x": 100,
+        "y": 100
       }
     ],
     "security": {

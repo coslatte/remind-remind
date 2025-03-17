@@ -3,7 +3,7 @@ import { TaskProp } from "./Task";
 import TaskList from "./TaskList";
 
 export interface TaskManagerHandle {
-  handleAddTask: () => void;
+  handleAddTask: (title: string) => void;
 }
 
 const TaskManager = forwardRef<TaskManagerHandle>((_props, ref) => {
@@ -15,13 +15,15 @@ const TaskManager = forwardRef<TaskManagerHandle>((_props, ref) => {
     handleAddTask,
   }));
 
-  // ADD
-  // ---
-  const handleAddTask = () => {
+  // HANDLING TASKS
+  // --------------
+  const handleAddTask = (title?: string) => {
     const newTask: TaskProp = {
       id: taskList.length + 1,
-      title: "",
+      title: title || "",
       completed: false,
+      changeTaskTitle: changeTaskTitle,
+      completeTask: completeTask,
       deleteTask: deleteTask,
     };
     addTask(newTask);
@@ -31,10 +33,30 @@ const TaskManager = forwardRef<TaskManagerHandle>((_props, ref) => {
     setTaskList([...taskList, task]);
   };
 
-  // DELETE
-  // ------
   const deleteTask = (taskId: number) => {
     setTaskList(taskList.filter((task) => task.id !== taskId));
+  };
+
+  const completeTask = (taskId: number) => {
+    setTaskList(
+      taskList.map((task) => {
+        if (task.id === taskId) {
+          return { ...task, completed: !task.completed };
+        }
+        return task;
+      }),
+    );
+  };
+
+  const changeTaskTitle = (taskId: number, newTitle: string) => {
+    setTaskList(
+      taskList.map((task) => {
+        if (task.id === taskId) {
+          return { ...task, title: newTitle };
+        }
+        return task;
+      }),
+    );
   };
 
   // FUNCTIONS
@@ -62,8 +84,15 @@ const TaskManager = forwardRef<TaskManagerHandle>((_props, ref) => {
 
   return (
     <div className="borderlands flat-shadow flex h-64 flex-col space-y-1 rounded-3xl bg-rose-500 p-2">
-      <div className="scrollbar scrollbar-thumb-rose-500 scrollbar-track-rose-100 hover:scrollbar-thumb-rose-600 scrollbar-w-3 scrollbar-rounded h-full w-full overflow-y-auto overscroll-y-auto rounded-3xl bg-rose-400 p-1">
-        <TaskList taskList={taskList} deleteTask={deleteTask} />
+      <div className="flex h-full w-full overflow-y-auto rounded-3xl bg-rose-400 p-2">
+        <div className="w-full">
+          <TaskList
+            taskList={taskList}
+            changeTaskTitle={changeTaskTitle}
+            completeTask={completeTask}
+            deleteTask={deleteTask}
+          />
+        </div>
       </div>
       <div className="pointer-events-auto flex h-8 items-center justify-start space-x-2 rounded-3xl bg-rose-600 p-2">
         <HandyInfoText>Tasks: {taskList.length}</HandyInfoText>
